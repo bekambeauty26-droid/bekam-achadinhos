@@ -1,0 +1,389 @@
+/* =========================================
+   ACHADINHOS DA BEKINHA
+   Estilo principal
+========================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #fff8fb;
+  color: #4b3740;
+  line-height: 1.5;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.pagina {
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* =========================================
+   APRESENTAÇÃO
+========================================= */
+
+.apresentacao {
+  width: 100%;
+  padding: 42px 20px 34px;
+  text-align: center;
+  background:
+    linear-gradient(
+      135deg,
+      #6f263d 0%,
+      #93445e 50%,
+      #c17b91 100%
+    );
+  color: #ffffff;
+}
+
+.texto-apresentacao {
+  width: min(760px, 100%);
+  margin: 0 auto;
+}
+
+.chamada {
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #f2d3b5;
+}
+
+.texto-apresentacao h1 {
+  margin-bottom: 12px;
+  font-size: clamp(29px, 5vw, 48px);
+  line-height: 1.1;
+}
+
+.texto-apresentacao > p:last-child {
+  font-size: 17px;
+  color: #fff4f7;
+}
+
+/* =========================================
+   ÁREA DOS PRODUTOS
+========================================= */
+
+.produtos {
+  width: min(1180px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 42px 0 50px;
+}
+
+.titulo-secao {
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+.titulo-secao p {
+  margin-bottom: 4px;
+  color: #a35c72;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
+.titulo-secao h2 {
+  color: #5b2639;
+  font-size: clamp(28px, 4vw, 38px);
+}
+
+/* Duas categorias por linha no computador */
+
+.grade-categorias {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+/* =========================================
+   BLOCO DE CATEGORIA
+========================================= */
+
+.categoria-bloco {
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #ecdce2;
+  border-radius: 18px;
+  box-shadow: 0 10px 26px rgba(77, 42, 54, 0.09);
+}
+
+.categoria-titulo {
+  padding: 13px 18px;
+  background: #7c3048;
+  color: #ffffff;
+  text-align: center;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* =========================================
+   CARD DO PRODUTO
+========================================= */
+
+.produto-card {
+  min-height: 190px;
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
+  padding: 18px;
+  background: #ffffff;
+}
+
+.produto-card + .produto-card {
+  border-top: 1px solid #f0e3e8;
+}
+
+.produto-imagem-area {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #fffafb;
+  border-radius: 14px;
+}
+
+.produto-imagem {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.produto-conteudo {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.produto-nome {
+  width: 100%;
+  margin-bottom: 10px;
+  color: #4b3740;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.produto-preco {
+  margin-bottom: 17px;
+  color: #7c3048;
+  font-size: 25px;
+  font-weight: 800;
+}
+
+.produto-botao {
+  display: inline-flex;
+  min-height: 42px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: #7c3048;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.produto-botao:hover {
+  background: #9a4962;
+  transform: translateY(-2px);
+}
+
+/* =========================================
+   MENSAGENS
+========================================= */
+
+.mensagem-carregamento,
+.mensagem-erro {
+  grid-column: 1 / -1;
+  width: 100%;
+  padding: 35px 20px;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #ecdce2;
+  border-radius: 16px;
+  color: #765663;
+}
+
+.mensagem-erro {
+  color: #9b2f42;
+}
+
+/* =========================================
+   CONVITE FINAL
+========================================= */
+
+.convite {
+  width: min(900px, calc(100% - 32px));
+  margin: 0 auto 50px;
+  padding: 42px 26px;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid #ecdce2;
+  border-radius: 22px;
+  box-shadow: 0 10px 30px rgba(77, 42, 54, 0.08);
+}
+
+.convite h2 {
+  margin-bottom: 12px;
+  color: #5b2639;
+  font-size: clamp(24px, 4vw, 34px);
+  line-height: 1.2;
+}
+
+.convite p {
+  max-width: 620px;
+  margin: 0 auto 26px;
+  color: #765663;
+  font-size: 16px;
+}
+
+.botao-principal,
+.botao-vip {
+  width: min(420px, 100%);
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 12px auto 0;
+  padding: 13px 20px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 800;
+  text-align: center;
+  text-transform: uppercase;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.botao-principal {
+  background: #7c3048;
+  color: #ffffff;
+}
+
+.botao-vip {
+  background: #2f8f57;
+  color: #ffffff;
+}
+
+.botao-principal:hover,
+.botao-vip:hover {
+  transform: translateY(-2px);
+  opacity: 0.92;
+}
+
+/* =========================================
+   CELULAR
+========================================= */
+
+@media (max-width: 760px) {
+
+  .apresentacao {
+    padding: 34px 18px 30px;
+  }
+
+  .produtos {
+    width: min(100% - 20px, 1180px);
+    padding: 32px 0 38px;
+  }
+
+  .grade-categorias {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .produto-card {
+    min-height: 160px;
+    grid-template-columns: 118px minmax(0, 1fr);
+    gap: 13px;
+    padding: 14px;
+  }
+
+  .produto-imagem-area {
+    width: 118px;
+    height: 130px;
+  }
+
+  .produto-nome {
+    margin-bottom: 7px;
+    font-size: 16px;
+  }
+
+  .produto-preco {
+    margin-bottom: 13px;
+    font-size: 21px;
+  }
+
+  .produto-botao {
+    min-height: 38px;
+    padding: 9px 17px;
+    font-size: 12px;
+  }
+
+  .convite {
+    width: calc(100% - 20px);
+    margin-bottom: 30px;
+    padding: 32px 18px;
+  }
+}
+
+/* =========================================
+   CELULARES PEQUENOS
+========================================= */
+
+@media (max-width: 380px) {
+
+  .produto-card {
+    grid-template-columns: 100px minmax(0, 1fr);
+    gap: 11px;
+    padding: 12px;
+  }
+
+  .produto-imagem-area {
+    width: 100px;
+    height: 118px;
+  }
+
+  .produto-nome {
+    font-size: 15px;
+  }
+
+  .produto-preco {
+    font-size: 19px;
+  }
+
+  .produto-botao {
+    padding: 8px 13px;
+    font-size: 11px;
+  }
+}
