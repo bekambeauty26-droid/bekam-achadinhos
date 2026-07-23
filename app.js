@@ -2,6 +2,15 @@ const URL_CSV =
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vTn_Krigi_cB04M37KeWFDY4nvSjkVQl2TylZgEshlpX5g__E7DhCol6_B7xeQunRJvTv_ms5ilucu4/pub?gid=1244445931&single=true&output=csv";
 
 const LIMITE_POR_CATEGORIA = 2;
+
+/*
+  COLOQUE AQUI OS LINKS DAS PÁGINAS OFICIAIS
+  DE CADA CATEGORIA.
+
+  Use exatamente o nome da categoria da planilha,
+  porém em letras minúsculas e sem acentos.
+*/
+
 const LINKS_CATEGORIAS = {
   perfumes: "",
   cabelos: "",
@@ -9,10 +18,18 @@ const LINKS_CATEGORIAS = {
   casa: "",
   cozinha: "",
   maquiagem: "",
-  unhas: ""
+  unhas: "",
+  jardinagem: "",
+  banheiro: "",
+  limpeza: ""
 };
+
 const mensagem = document.getElementById("mensagem");
 const gradeCategorias = document.getElementById("gradeCategorias");
+
+/* ==================================================
+   NORMALIZAÇÃO DE TEXTO
+================================================== */
 
 function normalizarTexto(valor) {
   return String(valor ?? "")
@@ -22,6 +39,10 @@ function normalizarTexto(valor) {
     .replace(/[\u0300-\u036f]/g, "");
 }
 
+/* ==================================================
+   PROTEÇÃO DO HTML
+================================================== */
+
 function escaparHTML(valor) {
   return String(valor ?? "")
     .replaceAll("&", "&amp;")
@@ -30,6 +51,10 @@ function escaparHTML(valor) {
     .replaceAll('"', "&quot;")
     .replaceAll("'", "&#039;");
 }
+
+/* ==================================================
+   LINKS
+================================================== */
 
 function prepararLink(valor) {
   const link = String(valor ?? "").trim();
@@ -41,21 +66,25 @@ function prepararLink(valor) {
     return link;
   }
 
-  return "#";
+  return "";
 }
 
-function formatarPreco(valor) {
-  const preco = String(valor ?? "").trim();
+/* ==================================================
+   PREÇO
+================================================== */
 
-  if (!preco) {
+function formatarPreco(valor) {
+  const precoOriginal = String(valor ?? "").trim();
+
+  if (!precoOriginal) {
     return "Consulte a oferta";
   }
 
-  if (/^r\$/i.test(preco)) {
-    return preco;
+  if (/^r\$/i.test(precoOriginal)) {
+    return precoOriginal;
   }
 
-  const numero = preco
+  const numero = precoOriginal
     .replace(/[^\d,.-]/g, "")
     .trim();
 
@@ -65,6 +94,10 @@ function formatarPreco(valor) {
 
   return `R$ ${numero}`;
 }
+
+/* ==================================================
+   LEITURA DO CSV
+================================================== */
 
 function lerCSV(texto) {
   const linhas = [];
@@ -144,6 +177,10 @@ function lerCSV(texto) {
   return linhas;
 }
 
+/* ==================================================
+   TRANSFORMAÇÃO DAS LINHAS EM OBJETOS
+================================================== */
+
 function criarObjetos(linhas) {
   if (linhas.length < 2) {
     return [];
@@ -167,19 +204,31 @@ function criarObjetos(linhas) {
   });
 }
 
+/* ==================================================
+   ORDENAÇÃO DOS PRODUTOS
+================================================== */
+
 function ordenarProdutos(produtos) {
   return [...produtos].sort((a, b) => {
     const ordemA =
-      Number(String(a.ordem).replace(",", ".")) ||
-      999999;
+      Number(
+        String(a.ordem ?? "")
+          .replace(",", ".")
+      ) || 999999;
 
     const ordemB =
-      Number(String(b.ordem).replace(",", ".")) ||
-      999999;
+      Number(
+        String(b.ordem ?? "")
+          .replace(",", ".")
+      ) || 999999;
 
     return ordemA - ordemB;
   });
 }
+
+/* ==================================================
+   AGRUPAMENTO POR CATEGORIA
+================================================== */
 
 function agruparPorCategoria(produtos) {
   const grupos = new Map();
@@ -208,6 +257,34 @@ function agruparPorCategoria(produtos) {
   return Array.from(grupos.values());
 }
 
+/* ==================================================
+   ÍCONE DE SACOLA
+================================================== */
+
+function criarIconeSacola() {
+  return `
+    <svg
+      class="icone-sacola"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true">
+
+      <path d="M6 8h12l1 12H5L6 8Z"></path>
+
+      <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
+
+    </svg>
+  `;
+}
+
+/* ==================================================
+   CARD DE PRODUTO
+================================================== */
+
 function criarCardProduto(produto) {
   const nome =
     String(produto.produto ?? "").trim() ||
@@ -218,7 +295,8 @@ function criarCardProduto(produto) {
 
   const preco =
     formatarPreco(
-      produto.preco ?? produto["preço"]
+      produto.preco ??
+      produto["preço"]
     );
 
   const link =
@@ -231,7 +309,10 @@ function criarCardProduto(produto) {
         alt="${escaparHTML(nome)}"
         loading="lazy"
         referrerpolicy="no-referrer"
-        onerror="this.parentElement.classList.add('imagem-com-erro'); this.remove();">
+        onerror="
+          this.parentElement.classList.add('imagem-com-erro');
+          this.remove();
+        ">
     `
     : `
       <span class="sem-imagem">
@@ -239,64 +320,28 @@ function criarCardProduto(produto) {
       </span>
     `;
 
-  const botaoHTML = link !== "#"
+  const botaoHTML = link
     ? `
       <a
         class="botao-oferta"
         href="${escaparHTML(link)}"
         target="_blank"
         rel="noopener noreferrer">
-        <svg
-  class="icone-sacola"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
-  aria-hidden="true">
 
-  <path d="M6 8h12l1 12H5L6 8Z"></path>
-  <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
+        ${criarIconeSacola()}
 
-</svg>
+        VER OFERTA
 
-VER OFERTA
       </a>
     `
     : `
-      <span class="botao-oferta botao-desativado">
-        <svg
-  class="icone-sacola"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
-  aria-hidden="true">
+      <span
+        class="botao-oferta botao-desativado">
 
-  <path d="M6 8h12l1 12H5L6 8Z"></path>
-  <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
+        ${criarIconeSacola()}
 
-</svg>
+        VER OFERTA
 
-<svg
-  class="icone-sacola"
-  viewBox="0 0 24 24"
-  fill="none"
-  stroke="currentColor"
-  stroke-width="2"
-  stroke-linecap="round"
-  stroke-linejoin="round"
-  aria-hidden="true">
-
-  <path d="M6 8h12l1 12H5L6 8Z"></path>
-  <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
-
-</svg>
-
-VER OFERTA
       </span>
     `;
 
@@ -325,15 +370,57 @@ VER OFERTA
   `;
 }
 
+/* ==================================================
+   BLOCO DE CATEGORIA
+================================================== */
+
 function criarBlocoCategoria(grupo) {
+  const produtosOrdenados =
+    ordenarProdutos(grupo.produtos);
+
   const produtosLimitados =
-    ordenarProdutos(grupo.produtos)
-      .slice(0, LIMITE_POR_CATEGORIA);
+    produtosOrdenados.slice(
+      0,
+      LIMITE_POR_CATEGORIA
+    );
 
   const cards =
     produtosLimitados
       .map(criarCardProduto)
       .join("");
+
+  const chaveCategoria =
+    normalizarTexto(grupo.nome);
+
+  const linkCategoria =
+    prepararLink(
+      LINKS_CATEGORIAS[chaveCategoria]
+    );
+
+  const temMaisProdutos =
+    grupo.produtos.length >
+    LIMITE_POR_CATEGORIA;
+
+  const rodapeCategoria =
+    temMaisProdutos && linkCategoria
+      ? `
+        <div class="rodape-categoria">
+
+          <a
+            class="botao-categoria"
+            href="${escaparHTML(linkCategoria)}"
+            target="_blank"
+            rel="noopener noreferrer">
+
+            ${criarIconeSacola()}
+
+            VER MAIS PRODUTOS
+
+          </a>
+
+        </div>
+      `
+      : "";
 
   return `
     <section class="bloco-categoria">
@@ -346,9 +433,31 @@ function criarBlocoCategoria(grupo) {
         ${cards}
       </div>
 
+      ${rodapeCategoria}
+
     </section>
   `;
 }
+
+/* ==================================================
+   VERIFICAÇÃO DOS PRODUTOS ATIVOS
+================================================== */
+
+function produtoEstaAtivo(produto) {
+  const ativo =
+    normalizarTexto(produto.ativo);
+
+  return (
+    ativo === "sim" ||
+    ativo === "s" ||
+    ativo === "true" ||
+    ativo === "1"
+  );
+}
+
+/* ==================================================
+   CARREGAMENTO DOS PRODUTOS
+================================================== */
 
 async function carregarProdutos() {
   try {
@@ -356,8 +465,18 @@ async function carregarProdutos() {
     mensagem.textContent =
       "Carregando produtos...";
 
+    gradeCategorias.innerHTML = "";
+
+    const separador =
+      URL_CSV.includes("?")
+        ? "&"
+        : "?";
+
+    const urlAtualizada =
+      `${URL_CSV}${separador}atualizacao=${Date.now()}`;
+
     const resposta = await fetch(
-      `${URL_CSV}&atualizacao=${Date.now()}`,
+      urlAtualizada,
       {
         cache: "no-store"
       }
@@ -379,28 +498,24 @@ async function carregarProdutos() {
       criarObjetos(linhas);
 
     const produtosAtivos =
-      produtos.filter(produto => {
-        const ativo =
-          normalizarTexto(produto.ativo);
-
-        return (
-          ativo === "sim" ||
-          ativo === "s" ||
-          ativo === "true" ||
-          ativo === "1"
-        );
-      });
+      produtos.filter(produtoEstaAtivo);
 
     if (produtosAtivos.length === 0) {
       mensagem.textContent =
         "Nenhum produto ativo encontrado.";
 
-      gradeCategorias.innerHTML = "";
       return;
     }
 
     const grupos =
       agruparPorCategoria(produtosAtivos);
+
+    if (grupos.length === 0) {
+      mensagem.textContent =
+        "Nenhuma categoria encontrada.";
+
+      return;
+    }
 
     gradeCategorias.innerHTML =
       grupos
@@ -410,13 +525,22 @@ async function carregarProdutos() {
     mensagem.style.display = "none";
 
   } catch (erro) {
-    console.error(erro);
+    console.error(
+      "Erro ao carregar os produtos:",
+      erro
+    );
+
+    gradeCategorias.innerHTML = "";
+
+    mensagem.style.display = "block";
 
     mensagem.textContent =
       "Não foi possível carregar os produtos no momento.";
-
-    gradeCategorias.innerHTML = "";
   }
 }
+
+/* ==================================================
+   INÍCIO DO SISTEMA
+================================================== */
 
 carregarProdutos();
