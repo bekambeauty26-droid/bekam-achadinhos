@@ -238,12 +238,57 @@ function criarCardProduto(produto) {
         href="${escaparHTML(link)}"
         target="_blank"
         rel="noopener noreferrer">
-        VER OFERTA
+        <svg
+  class="icone-sacola"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true">
+
+  <path d="M6 8h12l1 12H5L6 8Z"></path>
+  <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
+
+</svg>
+
+VER OFERTA
       </a>
     `
     : `
       <span class="botao-oferta botao-desativado">
-        VER OFERTA
+        <svg
+  class="icone-sacola"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true">
+
+  <path d="M6 8h12l1 12H5L6 8Z"></path>
+  <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
+
+</svg>
+
+<svg
+  class="icone-sacola"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true">
+
+  <path d="M6 8h12l1 12H5L6 8Z"></path>
+  <path d="M9 8V6a3 3 0 0 1 6 0v2"></path>
+
+</svg>
+
+VER OFERTA
       </span>
     `;
 
