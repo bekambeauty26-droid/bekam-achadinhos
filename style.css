@@ -1,3 +1,7 @@
+/* ==================================================
+   CONFIGURAÇÕES GERAIS
+================================================== */
+
 * {
   margin: 0;
   padding: 0;
@@ -16,103 +20,208 @@ body {
   color: #4b3740;
 }
 
+/* ==================================================
+   ÁREA PRINCIPAL
+================================================== */
+
 .pagina {
   width: 100%;
-  padding: 16px;
+  padding: 18px;
 }
 
-.nome-produto {
-  margin-bottom: 8px;
-
-  font-size: 22px;
-  font-weight: 750;
-  line-height: 1.3;
-  color: #3f2b33;
+.area-produtos {
+  width: 100%;
+  max-width: 1500px;
+  margin: 0 auto;
 }
 
-/* Grade principal das categorias */
+/* ==================================================
+   MENSAGENS
+================================================== */
+
+.mensagem {
+  width: 100%;
+  padding: 30px 15px;
+
+  text-align: center;
+
+  font-size: 18px;
+  font-weight: 700;
+
+  color: #934d66;
+}
+
+/* ==================================================
+   GRADE DAS CATEGORIAS
+================================================== */
 
 .grade-categorias {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  gap: 26px;
+
+  /*
+    Impede que uma categoria com apenas um produto
+    seja esticada até a altura da categoria ao lado.
+  */
+
+  align-items: start;
 }
 
-/* Bloco de cada categoria */
+/* ==================================================
+   BLOCO DE CATEGORIA
+================================================== */
 
 .bloco-categoria {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+
   overflow: hidden;
+
   background: #ffffff;
+
   border: 1px solid #f0dfe6;
-  border-radius: 20px;
-  box-shadow: 0 8px 20px rgba(75, 55, 64, 0.1);
+  border-radius: 22px;
+
+  box-shadow:
+    0 8px 24px rgba(75, 55, 64, 0.09);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
-/* Cabeçalho vinho */
+.bloco-categoria:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 13px 30px rgba(75, 55, 64, 0.14);
+}
+
+/* ==================================================
+   CABEÇALHO DA CATEGORIA
+================================================== */
 
 .titulo-categoria {
-  padding: 17px 20px;
+  padding: 19px 22px;
+
   text-align: center;
+
   background: #934d66;
   color: #ffffff;
-  font-size: 24px;
+
+  font-size: 25px;
   font-weight: 800;
-  letter-spacing: 0.5px;
+  line-height: 1.2;
+  letter-spacing: 0.6px;
+
   text-transform: uppercase;
 }
 
-/* Lista interna de produtos */
+/* ==================================================
+   LISTA DE PRODUTOS
+================================================== */
 
 .lista-produtos {
   display: flex;
   flex-direction: column;
 }
 
-/* Card de produto */
+/* ==================================================
+   CARD DO PRODUTO
+================================================== */
 
 .card-produto {
   display: grid;
-  grid-template-columns: 170px minmax(0, 1fr);
+
+  grid-template-columns:
+    170px minmax(0, 1fr);
+
   gap: 22px;
+
   align-items: center;
 
   min-height: 210px;
+
   padding: 20px;
 
   background: #ffffff;
+
   border-bottom: 1px solid #f0dfe6;
 }
 
-/* Imagem */
+.card-produto:last-child {
+  border-bottom: none;
+}
+
+/* ==================================================
+   IMAGEM DO PRODUTO
+================================================== */
 
 .imagem-produto {
   width: 170px;
   height: 170px;
 
   display: flex;
+
   align-items: center;
   justify-content: center;
 
   overflow: hidden;
+
   padding: 7px;
 
   background: #fffafb;
+
   border: 1px solid #f0dfe6;
   border-radius: 19px;
 }
 
-/* Textos */
+.imagem-produto img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  border-radius: 13px;
+
+  transition:
+    transform 0.3s ease;
+}
+
+.card-produto:hover .imagem-produto img {
+  transform: scale(1.04);
+}
+
+/* ==================================================
+   INFORMAÇÕES DO PRODUTO
+================================================== */
 
 .dados-produto {
   min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+  justify-content: center;
 }
 
 .nome-produto {
   margin-bottom: 8px;
 
   font-size: 22px;
-  font-weight: 750;
+  font-weight: 700;
   line-height: 1.3;
+
   color: #3f2b33;
 }
 
@@ -122,42 +231,156 @@ body {
   font-size: 32px;
   font-weight: 800;
   line-height: 1.08;
+
   color: #a24768;
 }
 
-/* Botão */
+/* ==================================================
+   BOTÕES
+================================================== */
 
-.botao-oferta {
+.botao-oferta,
+.botao-categoria {
   display: inline-flex;
+
   align-items: center;
   justify-content: center;
 
-  min-height:52px;
+  gap: 9px;
+
+  min-height: 52px;
+
   padding: 0 30px;
 
+  border: none;
   border-radius: 999px;
+
   background: #934d66;
   color: #ffffff;
 
   font-size: 15px;
   font-weight: 800;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.35px;
+
   text-decoration: none;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 5px 12px rgba(147, 77, 102, 0.22);
+
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    background 0.22s ease;
 }
 
-.botao-oferta:hover {
-  opacity: 0.92;
+.botao-oferta:hover,
+.botao-categoria:hover {
+  transform: translateY(-2px);
+
+  background: #7f3f57;
+
+  box-shadow:
+    0 8px 17px rgba(147, 77, 102, 0.3);
 }
 
-/* Celular */
+.botao-oferta:active,
+.botao-categoria:active {
+  transform: translateY(0);
+}
+
+/* ==================================================
+   ÍCONE DA SACOLA
+================================================== */
+
+.icone-sacola {
+  width: 20px;
+  height: 20px;
+
+  flex-shrink: 0;
+}
+
+/* ==================================================
+   BOTÃO VER MAIS PRODUTOS
+================================================== */
+
+.rodape-categoria {
+  padding: 17px 19px 20px;
+
+  text-align: center;
+
+  background: #ffffff;
+
+  border-top: 1px solid #f0dfe6;
+}
+
+.botao-categoria {
+  width: 100%;
+  max-width: 310px;
+}
+
+/* ==================================================
+   IMAGEM INDISPONÍVEL
+================================================== */
+
+.sem-imagem {
+  padding: 10px;
+
+  text-align: center;
+
+  font-size: 14px;
+
+  color: #9c7a87;
+}
+
+.imagem-com-erro::after {
+  content: "Imagem indisponível";
+
+  padding: 10px;
+
+  text-align: center;
+
+  font-size: 13px;
+
+  color: #9c7a87;
+}
+
+/* ==================================================
+   BOTÃO DESATIVADO
+================================================== */
+
+.botao-desativado {
+  cursor: default;
+
+  pointer-events: none;
+
+  opacity: 0.55;
+}
+
+/* ==================================================
+   TABLETS
+================================================== */
 
 @media (max-width: 900px) {
+
   .grade-categorias {
     grid-template-columns: 1fr;
+
+    gap: 22px;
+  }
+
+  .bloco-categoria:hover {
+    transform: none;
   }
 }
 
+/* ==================================================
+   CELULARES
+================================================== */
+
 @media (max-width: 600px) {
+
   .pagina {
     padding: 10px;
   }
@@ -167,62 +390,99 @@ body {
   }
 
   .titulo-categoria {
-    padding: 14px;
+    padding: 15px;
+
     font-size: 20px;
   }
 
   .card-produto {
-    grid-template-columns: 105px minmax(0, 1fr);
-    gap: 13px;
-    padding: 13px;
+    grid-template-columns:
+      112px minmax(0, 1fr);
+
+    gap: 14px;
+
+    min-height: 145px;
+
+    padding: 14px;
   }
 
   .imagem-produto {
-    width: 105px;
-    height: 105px;
-    border-radius: 14px;
+    width: 112px;
+    height: 112px;
+
+    padding: 5px;
+
+    border-radius: 15px;
   }
 
   .nome-produto {
-    margin-bottom: 8px;
+    margin-bottom: 7px;
+
+    font-size: 17px;
+    line-height: 1.25;
+  }
+
+  .preco-produto {
+    margin-bottom: 12px;
+
+    font-size: 23px;
+  }
+
+  .botao-oferta,
+  .botao-categoria {
+    min-height: 43px;
+
+    padding: 0 19px;
+
+    font-size: 13px;
+  }
+
+  .icone-sacola {
+    width: 17px;
+    height: 17px;
+  }
+
+  .rodape-categoria {
+    padding: 14px;
+  }
+}
+
+/* ==================================================
+   CELULARES PEQUENOS
+================================================== */
+
+@media (max-width: 390px) {
+
+  .card-produto {
+    grid-template-columns:
+      98px minmax(0, 1fr);
+
+    gap: 12px;
+
+    min-height: 128px;
+
+    padding: 12px;
+  }
+
+  .imagem-produto {
+    width: 98px;
+    height: 98px;
+  }
+
+  .nome-produto {
     font-size: 16px;
   }
 
   .preco-produto {
-    margin-bottom: 11px;
-    font-size: 22px;
+    font-size: 21px;
   }
 
-  .botao-oferta {
-    min-height: 42px;
-    padding: 0 18px;
-    font-size: 13px;
+  .botao-oferta,
+  .botao-categoria {
+    min-height: 41px;
+
+    padding: 0 16px;
+
+    font-size: 12px;
   }
-.mensagem {
-  width: 100%;
-  padding: 30px 15px;
-  text-align: center;
-  font-size: 18px;
-  font-weight: 700;
-  color: #934d66;
-}
-
-.sem-imagem {
-  padding: 10px;
-  text-align: center;
-  font-size: 14px;
-  color: #9c7a87;
-}
-
-.imagem-com-erro::after {
-  content: "Imagem indisponível";
-  padding: 10px;
-  text-align: center;
-  font-size: 13px;
-  color: #9c7a87;
-}
-
-.botao-desativado {
-  cursor: default;
-  opacity: 0.55;
 }
