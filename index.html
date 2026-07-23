@@ -13,75 +13,38 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body class="pagina-bloco-1">
 
-  <main class="pagina">
+  <main class="bloco-1">
 
-    <!-- BLOCO 1: VÍDEO E IMAGEM -->
-    <section class="bloco-apresentacao">
+    <div class="coluna-video">
 
-      <div class="area-video">
+      <video
+        class="video-bekinha"
+        controls
+        playsinline
+        preload="metadata">
 
-        <video
-          id="videoBekinha"
-          class="video-bekinha"
-          controls
-          playsinline
-          preload="metadata">
+        <source
+          src="video.mp4"
+          type="video/mp4">
 
-          Seu navegador não consegue reproduzir este vídeo.
+        Seu navegador não suporta vídeo.
 
-        </video>
+      </video>
 
-      </div>
+    </div>
 
-      <div class="area-banner">
+    <div class="coluna-banner">
 
-        <img
-          id="bannerBekinha"
-          class="banner-bekinha"
-          src=""
-          alt="Achadinhos da Bekinha">
+      <img
+        src="banner-achadinhos.jpg"
+        alt="Achadinhos da Bekinha"
+        class="banner-achadinhos">
 
-      </div>
-
-    </section>
-
-
-    <!-- BLOCO 2: PRODUTOS -->
-    <section class="bloco-produtos">
-
-      <div class="titulo-produtos">
-
-        <span class="detalhe-titulo"></span>
-
-        <h1>Achadinhos selecionados para você</h1>
-
-        <p>
-          Confira as ofertas escolhidas pela Bekinha.
-        </p>
-
-      </div>
-
-      <div
-        id="mensagem"
-        class="mensagem">
-
-        Carregando produtos...
-
-      </div>
-
-      <div
-        id="categorias"
-        class="categorias">
-
-      </div>
-
-    </section>
+    </div>
 
   </main>
-
-  <script src="app.js"></script>
 
 </body>
 
