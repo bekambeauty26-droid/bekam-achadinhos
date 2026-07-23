@@ -200,4 +200,31 @@ body {
     padding: 0 18px;
     font-size: 13px;
   }
+.mensagem {
+  width: 100%;
+  padding: 30px 15px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: #934d66;
+}
+
+.sem-imagem {
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+  color: #9c7a87;
+}
+
+.imagem-com-erro::after {
+  content: "Imagem indisponível";
+  padding: 10px;
+  text-align: center;
+  font-size: 13px;
+  color: #9c7a87;
+}
+
+.botao-desativado {
+  cursor: default;
+  opacity: 0.55;
 }
