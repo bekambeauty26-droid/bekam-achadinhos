@@ -21,10 +21,13 @@ body {
   padding: 16px;
 }
 
-.area-produtos {
-  width: 100%;
-  max-width: 1500px;
-  margin: 0 auto;
+.nome-produto {
+  margin-bottom: 8px;
+
+  font-size: 22px;
+  font-weight: 750;
+  line-height: 1.3;
+  color: #3f2b33;
 }
 
 /* Grade principal das categorias */
@@ -105,19 +108,21 @@ body {
 }
 
 .nome-produto {
-  margin-bottom: 10px;
-  font-size: 21px;
-  font-weight: 700;
+  margin-bottom: 8px;
+
+  font-size: 22px;
+  font-weight: 750;
   line-height: 1.3;
-  color: #4b3740;
+  color: #3f2b33;
 }
 
 .preco-produto {
   margin-bottom: 15px;
-  font-size: 29px;
+
+  font-size: 32px;
   font-weight: 800;
-  line-height: 1.1;
-  color: #934d66;
+  line-height: 1.08;
+  color: #a24768;
 }
 
 /* Botão */
@@ -127,8 +132,8 @@ body {
   align-items: center;
   justify-content: center;
 
-  min-height: 48px;
-  padding: 0 26px;
+  min-height:52px;
+  padding: 0 30px;
 
   border-radius: 999px;
   background: #934d66;
