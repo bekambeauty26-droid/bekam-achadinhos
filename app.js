@@ -2,7 +2,15 @@ const URL_CSV =
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vTn_Krigi_cB04M37KeWFDY4nvSjkVQl2TylZgEshlpX5g__E7DhCol6_B7xeQunRJvTv_ms5ilucu4/pub?gid=1244445931&single=true&output=csv";
 
 const LIMITE_POR_CATEGORIA = 2;
-
+const LINKS_CATEGORIAS = {
+  perfumes: "",
+  cabelos: "",
+  skincare: "",
+  casa: "",
+  cozinha: "",
+  maquiagem: "",
+  unhas: ""
+};
 const mensagem = document.getElementById("mensagem");
 const gradeCategorias = document.getElementById("gradeCategorias");
 
